@@ -1,0 +1,42 @@
+{% macro translationsTabs(translations, fields) %}
+<div class="languages">
+    <ul class="tabs">
+    {% for locale in translations.vars.locales %}
+        <li><a href="#locale-{{ locale }}" {{ loop.first ? 'class="active"' : '' }}>{{ locale|capitalize }}</a></li>
+    {% endfor %}
+    </ul>
+
+    <ul class="tabs-content">
+        <li {% if ('en' not in translations.vars.locales) %}style="display:none"{% endif %}>
+        {% for field in fields %}
+            {{ form_row(field) }}
+        {% endfor %}
+        </li>
+        {% for locale in translations.vars.locales if (locale != 'en') %}
+            <li class="locale-{{ locale }} {{ loop.first ? 'active' : '' }}">
+            {# Natives fields for default locale #}
+            {% if locale == 'en' %}
+                {% for field in fields %}
+                    {{ form_row(field) }}
+                {% endfor %}
+
+            {# Other locales : translations fields #}
+            {% else %}
+                {% for translationsLocale in translations if (translationsLocale.name == locale) %}
+                    {{ form_widget(translationsLocale) }}
+                {% endfor %}
+            {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endmacro %}
+
+
+{# Blocks #}
+
+    {# Category #}
+
+{% block _category_translations_widget %}
+    {{ _self.translationsTabs(form, fields) }}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Demo Translation Bundle | @2LiX{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/a2lixdemotranslation/css/main.css') }}" />
+{% endblock %}
+
+{% block body %}
+	<section>
+		{% block content %}{% endblock %}
+	</section>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('bundles/a2lixdemotranslation/js/main.js') }}"></script>
+{% endblock %}
