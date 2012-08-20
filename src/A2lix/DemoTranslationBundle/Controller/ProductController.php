@@ -6,21 +6,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use A2lix\DemoTranslationBundle\Entity\Category;
-use A2lix\DemoTranslationBundle\Form\CategoryType;
+use A2lix\DemoTranslationBundle\Entity\Product;
+use A2lix\DemoTranslationBundle\Form\ProductType;
 
 /**
- * Category controller.
+ * Product controller.
  *
- * @Route("/category")
+ * @Route("/product")
  */
-class CategoryController extends Controller
+class ProductController extends Controller
 {
     /**
      * Show all/one entity
      *
-     * @Route("/", defaults={"id"=""}, name="category")
-     * @Route("/{id}/show", name="category_show")
+     * @Route("/", defaults={"id"=""}, name="product")
+     * @Route("/{id}/show", name="product_show")
      * @Template()
      */
     public function indexAction($id = null)
@@ -28,26 +28,26 @@ class CategoryController extends Controller
         $em = $this->getDoctrine()->getManager();
         
         if ($id) {
-            $entity = $em->getRepository('A2lixDemoTranslationBundle:Category')->find($id);
+            $entity = $em->getRepository('A2lixDemoTranslationBundle:Product')->find($id);
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Category entity.');
+                throw $this->createNotFoundException('Unable to find Product entity.');
             }
 
-            return $this->render("A2lixDemoTranslationBundle:Category:show.html.twig", array(
+            return $this->render("A2lixDemoTranslationBundle:Product:show.html.twig", array(
                 'entity'     => $entity,
                 'deleteForm' => $this->createDeleteForm($id)->createView()
             ));
         }
         
-        $entities = $em->getRepository('A2lixDemoTranslationBundle:Category')->findAll();
+        $entities = $em->getRepository('A2lixDemoTranslationBundle:Product')->findAll();
         return array('entities' => $entities);
     }
     
     /**
      * New/Edit entity
      *
-     * @Route("/new", defaults={"id"=""}, name="category_new")
-     * @Route("/{id}/edit",  name="category_edit")
+     * @Route("/new", defaults={"id"=""}, name="product_new")
+     * @Route("/{id}/edit",  name="product_edit")
      * @Template()
      */
     public function editAction($id = null)
@@ -55,17 +55,17 @@ class CategoryController extends Controller
         $em = $this->getDoctrine()->getManager();
         
         if ($id) {
-            $entity = $em->getRepository('A2lixDemoTranslationBundle:Category')->find($id);
+            $entity = $em->getRepository('A2lixDemoTranslationBundle:Product')->find($id);
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Category entity.');
+                throw $this->createNotFoundException('Unable to find Product entity.');
             }
             
             $deleteForm = $this->createDeleteForm($id);
         } else {
-            $entity = new Category();
+            $entity = new Product();
         }
 
-        $editForm = $this->createForm(new CategoryType(), $entity);
+        $editForm = $this->createForm(new ProductType(), $entity);
         $request = $this->getRequest();
         if ('POST' === $request->getMethod()) {
             $editForm->bindRequest($request);
@@ -76,11 +76,11 @@ class CategoryController extends Controller
                 $em->flush();
                 $this->get('session')->setFlash('notice', ($id ? 'Edited!' : 'Created!'));
 
-                return $this->redirect($this->generateUrl('category_show', array('id' => $entity->getId())));
+                return $this->redirect($this->generateUrl('product_show', array('id' => $entity->getId())));
             }
         }
         
-//		return $this->render("A2lixDemoTranslationBundle:Category:editplus.html.twig", array(
+//		return $this->render("A2lixDemoTranslationBundle:Product:editplus.html.twig", array(
 //            'entity'   => $entity,
 //            'editForm' => $editForm->createView()
 //        ) + ($id ? array('deleteForm' => $deleteForm->createView()) : array()));
@@ -94,7 +94,7 @@ class CategoryController extends Controller
     /**
      * Delete entity.
      *
-     * @Route("/{id}/delete", name="category_delete")
+     * @Route("/{id}/delete", name="product_delete")
      * @Method("post")
      */
     public function deleteAction($id)
@@ -105,10 +105,10 @@ class CategoryController extends Controller
         $form->bindRequest($request);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('A2lixDemoTranslationBundle:Category')->find($id);
+            $entity = $em->getRepository('A2lixDemoTranslationBundle:Product')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Category entity.');
+                throw $this->createNotFoundException('Unable to find Product entity.');
             }
 
             $em->remove($entity);

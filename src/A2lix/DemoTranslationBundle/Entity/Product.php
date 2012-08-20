@@ -7,18 +7,18 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * A2lix\DemoTranslationBundle\Entity\Category
+ * A2lix\DemoTranslationBundle\Entity\Product
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="A2lix\DemoTranslationBundle\Repository\CategoryRepository")
- * @Gedmo\TranslationEntity(class="A2lix\DemoTranslationBundle\Entity\Translation\CategoryTranslation")
+ * @ORM\Entity(repositoryClass="A2lix\DemoTranslationBundle\Repository\ProductRepository")
+ * @Gedmo\TranslationEntity(class="A2lix\DemoTranslationBundle\Entity\Translation\ProductTranslation")
  */
-class Category
+class Product
 {
     /**
      * @var integer $id
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -27,23 +27,31 @@ class Category
     /**
      * @var string $title
      *
-     * @ORM\Column(length=100)
+     * @ORM\Column(name="title", type="string", length=255)
      * @Gedmo\Translatable
      */
     private $title;
 
     /**
-     * @var boolean $isMain
+     * @var string $description
      *
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(name="description", type="text")
+     * @Gedmo\Translatable
      */
-    private $isMain = false;
+    private $description;
+
+    /**
+     * @var Category
+     *
+     * @ORM\ManyToMany(targetEntity="Category", inversedBy="products", cascade={"persist"})
+     */
+    private $categories;
 
     /**
      * @ORM\OneToMany(
-     * 	 targetEntity="A2lix\DemoTranslationBundle\Entity\Translation\CategoryTranslation",
-     * 	 mappedBy="object",
-     * 	 cascade={"persist", "remove"}
+     * 	targetEntity="A2lix\DemoTranslationBundle\Entity\Translation\ProductTranslation",
+     * 	mappedBy="object",
+     * 	cascade={"persist", "remove"}
      * )
      * @Assert\Valid(deep = true)
      */
@@ -68,7 +76,7 @@ class Category
      * Set title
      *
      * @param string $title
-     * @return Category
+     * @return Product
      */
     public function setTitle($title)
     {
@@ -87,32 +95,51 @@ class Category
     }
 
     /**
-     * Set isMain
+     * Set description
      *
-     * @param boolean $isMain
-     * @return Category
+     * @param string $description
+     * @return Product
      */
-    public function setIsMain($isMain)
+    public function setDescription($description)
     {
-        $this->isMain = $isMain;
+        $this->description = $description;
         return $this;
     }
 
     /**
-     * Get isMain
+     * Get description
      *
-     * @return boolean $isMain
+     * @return string 
      */
-    public function getIsMain()
+    public function getDescription()
     {
-        return $this->isMain;
+        return $this->description;
+    }
+
+    /**
+     * Get CategoryNews
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * Set categories
+     */
+    public function setCategories($categories)
+    {
+        $this->categories = $categories;
+        return $this;
     }
 
     /**
      * Set translations
      *
      * @param ArrayCollection $translations
-     * @return Category
+     * @return Product
      */
     public function setTranslations($translations)
     {
@@ -133,7 +160,7 @@ class Category
     /**
      * Add translation
      *
-     * @param CategoryTranslation
+     * @param ProductTranslation
      */
     public function addTranslation($translation)
     {
@@ -146,7 +173,7 @@ class Category
     /**
      * Remove translation
      *
-     * @param CategoryTranslation
+     * @param ProductTranslation
      */
     public function removeTranslation($translation)
     {

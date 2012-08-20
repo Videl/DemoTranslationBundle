@@ -1,7 +1,7 @@
 {% extends "A2lixDemoTranslationBundle::layout.html.twig" %}
 
 {% block content %}
-<h1>Category</h1>
+<h1>Product</h1>
 
 <table class="record_properties">
     <tbody>
@@ -14,25 +14,25 @@
             <td>{{ entity.title }}</td>
         </tr>
         <tr>
-            <th>Is main</th>
-            <td>{{ entity.isMain }}</td>
+            <th>Description</th>
+            <td>{{ entity.description }}</td>
         </tr>
     </tbody>
 </table>
 
 <ul class="record_actions">
     <li>
-        <a href="{{ path('category') }}">
+        <a href="{{ path('product') }}">
             Back to the list
         </a>
     </li>
     <li>
-        <a href="{{ path('category_edit', { 'id': entity.id }) }}">
+        <a href="{{ path('product_edit', { 'id': entity.id }) }}">
             Edit
         </a>
     </li>
     <li>
-        <form action="{{ path('category_delete', { 'id': entity.id }) }}" method="post">
+        <form action="{{ path('product_delete', { 'id': entity.id }) }}" method="post">
             {{ form_widget(deleteForm) }}
             <button type="submit">Delete</button>
         </form>

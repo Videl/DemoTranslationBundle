@@ -1,13 +1,13 @@
 {
-    "name": "symfony/framework-standard-edition",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "name": "a2lix/demo-translation-bundle",
+    "description": "The demo translation bundle",
     "autoload": {
         "psr-0": { "": "src/" }
     },
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "2.1.*",
-        "doctrine/orm": "2.2.*",
+        "doctrine/orm": ">=2.2.3,<2.4-dev",
         "doctrine/doctrine-bundle": "dev-master",
         "twig/extensions": "dev-master",
         "symfony/assetic-bundle": "dev-master",
@@ -18,8 +18,9 @@
         "sensio/generator-bundle": "dev-master",
         "jms/security-extra-bundle": "1.1.*",
         "jms/di-extra-bundle": "1.0.*",
- 	 "stof/doctrine-extensions-bundle": "dev-master",
-	 "a2lix/translation-form-bundle": "dev-master"
+        "jms/i18n-routing-bundle": "dev-master",
+ 	"stof/doctrine-extensions-bundle": "dev-master",
+	"a2lix/translation-form-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
