@@ -1,42 +1,29 @@
-{% macro translationsTabs(translations, fields) %}
-<div class="languages">
-    <ul class="tabs">
-    {% for locale in translations.vars.locales %}
-        <li><a href="#locale-{{ locale }}" {{ loop.first ? 'class="active"' : '' }}>{{ locale|capitalize }}</a></li>
+{% block form_row %}
+{% spaceless %}
+    <div class="form_row">
+        {{ form_label(form) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+    </div>
+{% endspaceless %}
+{% endblock form_row %}
+
+
+
+
+{% block _product_categories_widget %}
+<div id="{{ form.vars.id }}" class="collection categories">
+    {% for media in form %}
+        {{ form_widget(media) }}
     {% endfor %}
-    </ul>
-
-    <ul class="tabs-content">
-        <li {% if ('en' not in translations.vars.locales) %}style="display:none"{% endif %}>
-        {% for field in fields %}
-            {{ form_row(field) }}
-        {% endfor %}
-        </li>
-        {% for locale in translations.vars.locales if (locale != 'en') %}
-            <li class="locale-{{ locale }} {{ loop.first ? 'active' : '' }}">
-            {# Natives fields for default locale #}
-            {% if locale == 'en' %}
-                {% for field in fields %}
-                    {{ form_row(field) }}
-                {% endfor %}
-
-            {# Other locales : translations fields #}
-            {% else %}
-                {% for translationsLocale in translations if (translationsLocale.name == locale) %}
-                    {{ form_widget(translationsLocale) }}
-                {% endfor %}
-            {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
+    <a href="#" data-collection="add">Add a category</a>
 </div>
-{% endmacro %}
+{% endblock %}
 
-
-{# Blocks #}
-
-    {# Category #}
-
-{% block _category_translations_widget %}
-    {{ _self.translationsTabs(form, fields) }}
+{% block _product_categories_entry_widget %}
+<div class="collection-entry category">
+    {{ form_row(form.translations, {fields : [form.title]}) }}
+    {{ form_row(form.isMain) }}
+    <a href="#" data-collection="delete">Delete</a>
+</div>    
 {% endblock %}

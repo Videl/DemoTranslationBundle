@@ -1,16 +1,15 @@
 {% extends "A2lixDemoTranslationBundle::layout.html.twig" %}
+{% form_theme editForm with 'A2lixDemoTranslationBundle::form.html.twig' %}
 
 {% block content %}
 <h1>Product {{ entity.id ? 'edition' : 'creation' }}</h1>
 
 <form action="{{ entity.id ? path('product_edit', { 'id': entity.id }) : path('product_new') }}" method="post" {{ form_enctype(editForm) }}>
-    {# ex 1 #}
     {{ form_row(editForm.title) }}
     {{ form_row(editForm.description) }}
     {{ form_row(editForm.translations) }}
       
-        
-    {# ex 2
+    {# Other render :
     {{ form_widget(editForm.translations, {fields : [editForm.title, editForm.description]}) }}
     #}
 
@@ -36,4 +35,19 @@
     </li>
     {% endif %}
 </ul>
+
+<script type="text/html" id="tpl_addCategory">
+    {{ form_widget(editForm.categories.vars.prototype) }}
+</script>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('bundles/a2lixtranslationform/js/a2lix_translation.js') }}"></script>
+<script type="text/javascript">
+    a2lix_libJS.collectionModule.init({
+        $collectionElt: $('#product_categories'),
+        $collectionEntryAddTplElt: $('#tpl_addCategory')
+    });
+</script>
 {% endblock %}

@@ -1,0 +1,147 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+
+
+/* http://paulirish.com/2012/box-sizing-border-box-ftw/
+   Apply a natural box layout model to all elements
+*/
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+
+
+
+h1 {
+    font-size: xx-large;
+}
+
+body {
+    
+}
+
+section.main {
+    margin: 0 auto;
+    width: 1024px;
+}
+
+.form_row {
+    margin: 5px 0;
+    line-height: 25px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.form_row > label {
+    display: block;
+    float: left;
+    width: 25%;
+}
+
+.form_row input + label {
+    margin: 0 5px 0 2px;
+}
+
+ul.record_actions {
+    clear: right;
+}
+
+ul.record_actions li {
+    display: inline;
+}
+
+ul.record_actions li.delete {
+    float: right;
+}
+
+table.records_list {
+    margin-bottom: 40px;
+    table-layout: fixed;
+}
+
+/* Links */
+
+a, a:active, a:visited {
+    color: #030F28;
+    font-weight: bold;
+}
+
+a:focus, a:hover {
+    color: #FCC656;
+    font-weight: bold;
+}
+
+/* Table */
+
+table {
+    text-align: center;
+    width: 100%;
+}
+
+table th, table td {
+    padding: 1px;
+    vertical-align: middle;
+}
+
+table tr {
+    border-bottom: 1px solid #030F28;
+}
+
+table tr.even {
+    background-color: whitesmoke;
+}
+
+table tbody tr:hover {
+    background-color: #E0E0E0;
+}
+
+table thead, table tfoot {
+    color: #030F28;
+    font-weight: bold;
+}

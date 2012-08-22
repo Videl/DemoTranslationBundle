@@ -13,6 +13,7 @@ class CategoryType extends AbstractType
         $builder
             ->add('title')
             ->add('isMain')
+            ->add('translations', 'translations')
         ;
     }
 

@@ -21,6 +21,8 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    globals:
+        locales: [fr, de, es, en]
     form:
         resources:
             - A2lixTranslationFormBundle::form.html.twig
