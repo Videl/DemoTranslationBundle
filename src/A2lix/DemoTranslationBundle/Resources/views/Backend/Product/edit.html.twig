@@ -1,0 +1,61 @@
+{% extends "A2lixDemoTranslationBundle:Backend:layout.html.twig" %}
+{% form_theme editForm with 'A2lixDemoTranslationBundle:Backend:form.html.twig' %}
+
+{% block content %}
+<h2>Product {{ entity.id ? 'edition' : 'creation' }}</h2>
+
+<form action="{{ entity.id ? path('backend_product_edit', { 'id': entity.id }) : path('backend_product_new') }}" method="post" {{ form_enctype(editForm) }} id="productForm">
+    {{ form_row(editForm.title) }}
+    {{ form_row(editForm.description) }}
+    {{ form_row(editForm.translations) }}
+      
+    {# Other render :
+    {{ form_widget(editForm.translations, {fields : [editForm.title, editForm.description]}) }}
+    #}
+
+    {{ form_rest(editForm) }}    
+        
+    <p>
+        <button type="submit">{{ entity.id ? 'Edit' : 'Create' }}</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('backend_product') }}">
+            Back to the list
+        </a>
+    </li>
+    {% if entity.id %}
+    <li class="delete">
+        <form action="{{ path('backend_product_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(deleteForm) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+    {% endif %}
+</ul>
+
+<script type="text/html" id="a2lix_collectionEntryCategoryTpl">
+    {{ form_widget(editForm.categories.vars.prototype) }}
+</script>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript">
+    a2lix_libJS.translationsTabsModule.init({
+        activeLocale : "{{ app.request.locale }}"
+    });
+    a2lix_libJS.collectionModule.init({
+        $context : $('#productForm'),
+        callbacks : {
+            afterAddEntry : function($newEntry) {
+                a2lix_libJS.translationsTabsModule.init({
+                    $context : $newEntry
+                });
+            }
+        }
+    });
+</script>
+{% endblock %}

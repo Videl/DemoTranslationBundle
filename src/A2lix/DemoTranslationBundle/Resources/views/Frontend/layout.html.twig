@@ -1,0 +1,37 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Demo Translation Bundle | @2LiX{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('bundles/a2lixtranslationform/css/a2lix_translation.css') }}" />
+<link rel="stylesheet" href="{{ asset('bundles/a2lixdemotranslation/css/main.css') }}" />    
+{% endblock %}
+
+{% block body %}
+<header>
+    <h1>Demo Translation Bundle - Frontend</h1>
+    {% block changeLocale %}
+    <div class="changeLocale">
+        Change locale :
+        <ul>
+        {% for locale in locales %}
+            <li {% if locale == app.request.locale %}class="active"{% endif %}>
+                <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale' : locale})) }}">{{ locale }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endblock %}
+</header>
+<section class="main">
+    {% block content %}{% endblock %}
+</section>
+<footer>
+    @2LiX - 2012
+</footer>
+{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('bundles/a2lixdemotranslation/js/jquery-1.8.0.min.js') }}"></script>
+<script src="{{ asset('bundles/a2lixdemotranslation/js/main.js') }}"></script>
+{% endblock %}

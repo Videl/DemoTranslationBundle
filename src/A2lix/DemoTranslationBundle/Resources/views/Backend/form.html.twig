@@ -1,0 +1,33 @@
+{# GLOBAL #}
+
+{# Add 'form_row' class to all row of the form #}
+{% block form_row %}
+{% spaceless %}
+    <div class="form_row">
+        {{ form_label(form) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+    </div>
+{% endspaceless %}
+{% endblock form_row %}
+
+
+
+{# CUSTOM - product form #}
+
+{% block _product_categories_widget %}
+<div id="{{ form.vars.id }}" class="a2lix_collection" data-collection-nb="{{ form|length }}">
+    {% for collection_entry in form %}
+        {{ form_widget(collection_entry) }}
+    {% endfor %}
+    <a href="#" data-collection-act="add" data-collection-tpl="#a2lix_collectionEntryCategoryTpl">Add a category</a>
+</div>
+{% endblock %}
+
+{% block _product_categories_entry_widget %}
+<div class="a2lix_collectionEntry">
+    {{ form_row(form.translations, {fields : [form.title]}) }}
+    {{ form_row(form.isMain) }}
+    <a href="#" data-collection-act="delete">Delete</a>
+</div>    
+{% endblock %}

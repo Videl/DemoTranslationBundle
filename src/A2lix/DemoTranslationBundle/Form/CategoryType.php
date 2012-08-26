@@ -12,15 +12,18 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('isMain')
-            ->add('translations', 'translations')
+            ->add('isMain', null, array(
+                'required' => false
+            ))
+            ->add('translations', 'a2lix_translations')
         ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'A2lix\DemoTranslationBundle\Entity\Category'
+            'data_class' => 'A2lix\DemoTranslationBundle\Entity\Category',
+            'translation_domain' => 'forms'
         ));
     }
 

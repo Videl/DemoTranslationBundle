@@ -1,6 +1,6 @@
 <?php
 
-namespace A2lix\DemoTranslationBundle\Controller;
+namespace A2lix\DemoTranslationBundle\Controller\Backend;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -19,8 +19,8 @@ class ProductController extends Controller
     /**
      * Show all/one entity
      *
-     * @Route("/", defaults={"id"=""}, name="product")
-     * @Route("/{id}/show", name="product_show")
+     * @Route("/", defaults={"id"=""}, name="backend_product")
+     * @Route("/{id}/show", name="backend_product_show")
      * @Template()
      */
     public function indexAction($id = null)
@@ -33,7 +33,7 @@ class ProductController extends Controller
                 throw $this->createNotFoundException('Unable to find Product entity.');
             }
 
-            return $this->render("A2lixDemoTranslationBundle:Product:show.html.twig", array(
+            return $this->render("A2lixDemoTranslationBundle:Backend\\Product:show.html.twig", array(
                 'entity'     => $entity,
                 'deleteForm' => $this->createDeleteForm($id)->createView()
             ));
@@ -46,8 +46,8 @@ class ProductController extends Controller
     /**
      * New/Edit entity
      *
-     * @Route("/new", defaults={"id"=""}, name="product_new")
-     * @Route("/{id}/edit",  name="product_edit")
+     * @Route("/new", defaults={"id"=""}, name="backend_product_new")
+     * @Route("/{id}/edit", name="backend_product_edit")
      * @Template()
      */
     public function editAction($id = null)
@@ -61,6 +61,7 @@ class ProductController extends Controller
             }
             
             $deleteForm = $this->createDeleteForm($id);
+        
         } else {
             $entity = new Product();
         }
@@ -76,15 +77,10 @@ class ProductController extends Controller
                 $em->flush();
                 $this->get('session')->setFlash('notice', ($id ? 'Edited!' : 'Created!'));
 
-                return $this->redirect($this->generateUrl('product_show', array('id' => $entity->getId())));
+                return $this->redirect($this->generateUrl('backend_product_show', array('id' => $entity->getId())));
             }
         }
         
-//		return $this->render("A2lixDemoTranslationBundle:Product:editplus.html.twig", array(
-//            'entity'   => $entity,
-//            'editForm' => $editForm->createView()
-//        ) + ($id ? array('deleteForm' => $deleteForm->createView()) : array()));
-		
         return array(
             'entity'   => $entity,
             'editForm' => $editForm->createView()
@@ -94,7 +90,7 @@ class ProductController extends Controller
     /**
      * Delete entity.
      *
-     * @Route("/{id}/delete", name="product_delete")
+     * @Route("/{id}/delete", name="backend_product_delete", options={"i18n" = false})
      * @Method("post")
      */
     public function deleteAction($id)
@@ -116,7 +112,7 @@ class ProductController extends Controller
             $this->get('session')->setFlash('notice', 'Deleted!');
         }
 
-        return $this->redirect($this->generateUrl('category'));
+        return $this->redirect($this->generateUrl('product'));
     }
     
     private function createDeleteForm($id)

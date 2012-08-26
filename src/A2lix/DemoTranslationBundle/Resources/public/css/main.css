@@ -58,18 +58,65 @@ table {
 
 
 
+
+
+/*
+ * 
+ */
+
+html, body {
+    background-color: #EFEFEF;
+}
+
+
+/* Links */
+
+a, a:active, a:visited {
+    color: #08C;
+    text-decoration: none;
+}
+
+a:focus, a:hover {
+    text-decoration: underline;
+}
+
+
+/* */
+
+h1, h2, h3 {
+    font-weight: bold;    
+}
+
 h1 {
     font-size: xx-large;
 }
 
-body {
-    
+h2 {
+    font-size: x-large;
+}
+
+h3 {
+    font-size: large;
+}
+
+
+/* */
+
+header, footer {
+    padding: 10px 0;
+    text-align: center;
 }
 
 section.main {
+    background-color: #fff;
     margin: 0 auto;
-    width: 1024px;
+    min-width: 1024px;
+    padding: 10px 10% 30px;
 }
+
+
+
+/* Form */
 
 .form_row {
     margin: 5px 0;
@@ -88,34 +135,6 @@ section.main {
     margin: 0 5px 0 2px;
 }
 
-ul.record_actions {
-    clear: right;
-}
-
-ul.record_actions li {
-    display: inline;
-}
-
-ul.record_actions li.delete {
-    float: right;
-}
-
-table.records_list {
-    margin-bottom: 40px;
-    table-layout: fixed;
-}
-
-/* Links */
-
-a, a:active, a:visited {
-    color: #030F28;
-    font-weight: bold;
-}
-
-a:focus, a:hover {
-    color: #FCC656;
-    font-weight: bold;
-}
 
 /* Table */
 
@@ -144,4 +163,60 @@ table tbody tr:hover {
 table thead, table tfoot {
     color: #030F28;
     font-weight: bold;
+}
+
+/* */
+
+ul.record_actions {
+    clear: right;
+}
+
+ul.record_actions li {
+    display: inline;
+}
+
+ul.record_actions li.delete {
+    float: right;
+}
+
+table.records_list {
+    margin-bottom: 40px;
+    table-layout: fixed;
+}
+
+
+
+
+
+/*
+ * 
+ */
+
+header .changeLocale {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+header .changeLocale li {
+    display: inline;
+}
+
+header .changeLocale li.active a {
+   color: #000;
+}
+
+
+/* Collection */
+
+.a2lix_collection {
+    border-left: 10px solid #000;
+    overflow: hidden;
+    padding-left: 10px;
+}
+
+.a2lix_collectionEntry {
+    background-color: #A7DA39;
+    clear: both;
+    padding-left: 10px;
 }

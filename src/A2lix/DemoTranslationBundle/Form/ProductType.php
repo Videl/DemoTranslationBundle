@@ -14,7 +14,7 @@ class ProductType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
-            ->add('translations', 'translations', array(
+            ->add('translations', 'a2lix_translations', array(
                 'fields' => array(
                     'description' => array(
                         'label' => "Desc",
@@ -37,7 +37,8 @@ class ProductType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'A2lix\DemoTranslationBundle\Entity\Product'
+            'data_class' => 'A2lix\DemoTranslationBundle\Entity\Product',
+            'translation_domain' => 'forms'
         ));
     }
 

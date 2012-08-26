@@ -1,7 +1,7 @@
-{% extends "A2lixDemoTranslationBundle::layout.html.twig" %}
+{% extends "A2lixDemoTranslationBundle:Backend:layout.html.twig" %}
 
 {% block content %}
-<h1>Product</h1>
+<h2>Product</h2>
 
 <table class="record_properties">
     <tbody>
@@ -22,17 +22,17 @@
 
 <ul class="record_actions">
     <li>
-        <a href="{{ path('product') }}">
+        <a href="{{ path('backend_product') }}">
             Back to the list
         </a>
     </li>
     <li>
-        <a href="{{ path('product_edit', { 'id': entity.id }) }}">
+        <a href="{{ path('backend_product_edit', { 'id': entity.id }) }}">
             Edit
         </a>
     </li>
     <li>
-        <form action="{{ path('product_delete', { 'id': entity.id }) }}" method="post">
+        <form action="{{ path('backend_product_delete', { 'id': entity.id }) }}" method="post">
             {{ form_widget(deleteForm) }}
             <button type="submit">Delete</button>
         </form>
