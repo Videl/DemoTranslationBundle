@@ -52,6 +52,10 @@ class ProductController extends Controller
      */
     public function editAction($id = null)
     {
+        // Force defaultLocale into the translatableListener (Can be set by AOP for all new/edit method)
+        $translatableListener = $this->get('stof_doctrine_extensions.listener.translatable');
+        $translatableListener->setTranslatableLocale($translatableListener->getDefaultLocale());
+        
         $em = $this->getDoctrine()->getManager();
         
         if ($id) {
