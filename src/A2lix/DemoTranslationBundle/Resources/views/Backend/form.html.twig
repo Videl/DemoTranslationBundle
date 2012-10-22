@@ -16,7 +16,7 @@
 {# CUSTOM - product form #}
 
 {% block _product_categories_widget %}
-<div id="{{ form.vars.id }}" class="a2lix_collection" data-collection-nb="{{ form|length }}">
+<div id="{{ form.vars.id }}" class="a2lix_collection">
     {% for collection_entry in form %}
         {{ form_widget(collection_entry) }}
     {% endfor %}
@@ -29,5 +29,5 @@
     {{ form_row(form.translations, {fields : [form.title]}) }}
     {{ form_row(form.isMain) }}
     <a href="#" data-collection-act="delete">Delete</a>
-</div>    
+</div>
 {% endblock %}
