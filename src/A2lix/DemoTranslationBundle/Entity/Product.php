@@ -43,7 +43,7 @@ class Product
     /**
      * @var Category
      *
-     * @ORM\ManyToMany(targetEntity="Category", inversedBy="products", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Category", cascade={"persist"})
      */
     private $categories;
 
@@ -65,7 +65,7 @@ class Product
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -87,7 +87,7 @@ class Product
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -109,7 +109,7 @@ class Product
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -150,7 +150,7 @@ class Product
     /**
      * Get translations
      *
-     * @return ArrayCollection 
+     * @return ArrayCollection
      */
     public function getTranslations()
     {
