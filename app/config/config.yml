@@ -64,6 +64,7 @@ swiftmailer:
     spool:     { type: memory }
 
 stof_doctrine_extensions:
+    default_locale: en            # Optional for 'en', but if you change the default language, you HAVE to change that.
     orm:
         default:
             translatable: true
